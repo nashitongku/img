@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	.layer-img-wrapper{
+		position: fixed;
+		top:0px;
+		left:0px;
+		height: 100%;
+		width:100%;
+		background: rgba(0,0,0,0.5);
+		z-index: 100px;
+	}
+	.layer_img{
+		width:500px;
+		position: absolute;
+		top:50%;
+		left:50%;
+	 -webkit-transform: translate(-50%, -50%);
+	    transform: translate(-50%, -50%);
+	    z-index: 100px;
+	}
+</style>
+<script type="text/javascript" src="jquery.min.js"></script>
+</head>
+<body style="width:500px;margin:0 auto">
+	<img src="a.png">
+	<script type="text/javascript">
+		var domImg = document.getElementsByTagName('img')[0]
+
+		function imgController(e){
+			e = e || window.event;
+			var addWidth = e.wheelDelta > 0 ? 50 : -50;
+			console.log('width:'+(this.width+addWidth)+'px')
+			this.style = 'width:'+(this.width+addWidth)+'px'
+		}
+
+
+		function addScroll(dom,fn){
+			dom.onmousewheel = fn;
+		}
+
+		addScroll(domImg,imgController);
+
+
+		$('img').click(function(){
+			var wrapper = document.createElement('div');
+			$(wrapper).attr('class','layer-img-wrapper')
+			var img = document.createElement('img');
+			img.src = $(this).attr('src');
+			$(img).attr('class','layer_img');
+			$('body').append(wrapper);
+			wrapper.append(img);
+			$(this).css('width','500px');
+			var layerImg = $('.layer_img')[0]
+
+			addScroll(layerImg,imgController);
+		})
+		$('img').scroll(function(){
+			console.log('asdf')
+		})
+
+	</script>
+</body>
+</html>

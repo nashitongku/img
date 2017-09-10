@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="layer-img.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <img src="a.png">
+</div>
+    <script type="text/javascript">
+    	document.getElementsByTagName('img')[0].onload = function(){
+			ImgMediator.mounting('.wrapper');
+    		}
+    		
+    </script>
+</body>
+</html>
